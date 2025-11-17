@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://xxx.execute-api.us-east-1.amazonaws.com/dev';
+const API_BASE_URL = 'https://sjksicdqld.execute-api.us-east-1.amazonaws.com/dev';
 
 export const api = {
   async createIncident(incident: any) {
