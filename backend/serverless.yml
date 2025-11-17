@@ -1,4 +1,4 @@
-org: camilaespinoza
+org: gabrielfrisancho
 service: alerta-utec
 
 provider:
@@ -8,7 +8,7 @@ provider:
   timeout: 20
   region: us-east-1
   iam:
-    role: arn:aws:iam::197052065931:role/LabRole
+    role: arn:aws:iam::213965374161:role/LabRole
 
 functions:
   crear_incidente:
@@ -56,3 +56,4 @@ resources:
           - AttributeName: id
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
+
