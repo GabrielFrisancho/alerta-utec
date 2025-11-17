@@ -1,0 +1,61 @@
+org: camilaespinoza
+service: alerta-utec
+
+provider:
+  name: aws
+  runtime: python3.9
+  memorySize: 256
+  timeout: 20
+  iam:
+    role: arn:aws:iam::447891120606:role/LabRole
+
+functions:
+  crear_incidente:
+    handler: app.crear_incidente
+    events:
+      - http:
+          path: /incidentes
+          method: post
+          cors: true
+          integration: lambda
+
+  listar_incidentes:
+    handler: app.listar_incidentes
+    events:
+      - http:
+          path: /incidentes
+          method: get
+          cors: true
+          integration: lambda
+
+  obtener_incidente:
+    handler: app.obtener_incidente
+    events:
+      - http:
+          path: /incidentes/{id}
+          method: get
+          cors: true
+          integration: lambda
+
+  actualizar_incidente:
+    handler: app.actualizar_incidente
+    events:
+      - http:
+          path: /incidentes/{id}
+          method: put
+          cors: true
+          integration: lambda
+
+resources:
+  Resources:
+    IncidentesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: IncidentesUTEC
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
